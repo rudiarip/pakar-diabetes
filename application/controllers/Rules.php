@@ -59,6 +59,7 @@ class Rules extends CI_Controller
 		}
 
 		$this->db->order_by('td.name_disease', 'ASC');
+		$this->db->order_by('tr.id_rule', 'ASC');
 		$this->db->limit($length, $start);
 		$query = $this->db->get();
 
@@ -102,6 +103,16 @@ class Rules extends CI_Controller
 		$created_by		= $this->session->userdata('username') ?? 'System';
 
 		if ($id_edit == '') {
+			### Lakukan pengecekan
+			$cek = $this->db->where('id_symptom', $id_symptom)->where('id_disease', $id_disease)->get('tbl_rules')->row();
+			if ($cek) {
+				$return = [
+					'status' => FALSE,
+					'message' => 'Maaf Gejala dan penyakit sudah terdaftar'
+				];
+				echo json_encode($return);
+				return;
+			}
 
 			### Lakukan insert
 			$param = array(
