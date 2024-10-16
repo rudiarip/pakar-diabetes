@@ -55,7 +55,7 @@ class Disease extends CI_Controller
 		}
 
 		$this->db->where('deleted_at =', NULL);
-		$this->db->order_by('name_disease', 'ASC');
+		$this->db->order_by('kode_disease', 'ASC');
 		$this->db->limit($length, $start);
 		$query = $this->db->get();
 

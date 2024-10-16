@@ -58,7 +58,8 @@ class Rules extends CI_Controller
 			$this->db->or_like('ts.name_symptom', $search);
 		}
 
-		$this->db->order_by('td.name_disease', 'ASC');
+		$this->db->order_by('td.kode_disease', 'ASC');
+		$this->db->order_by('ts.kode_symptom', 'ASC');
 		$this->db->order_by('tr.id_rule', 'ASC');
 		$this->db->limit($length, $start);
 		$query = $this->db->get();
