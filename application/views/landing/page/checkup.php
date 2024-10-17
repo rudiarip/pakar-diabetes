@@ -20,7 +20,14 @@
 							</div>
 							<div id="loadingPertanyaan"></div>
 							<div class="opening">
-								<button id="btnMulai" class="m-1 btn btn-primary"> Mulai Pemeriksaan <i class="ri-play-line align-middle"></i></button>
+								<?php if ($this->session->userdata('logged')) { ?>
+									<button id="btnMulai" class="m-1 btn btn-primary"> Mulai Pemeriksaan <i class="ri-play-line align-middle"></i></button>
+								<?php } else { ?>
+									<a href="<?= base_url('login?referer=checkup') ?>" class="btn btn-wave btn-primary">
+										Masuk untuk memulai pemeriksaan
+									</a>
+								<?php } ?>
+
 							</div>
 							<button style="display: none;" id="btnRepeat" class="btn btn-warning"> Ulangi Pemeriksaan <i class="ri-repeat-line align-middle"></i></button>
 							<div id="btnJawab" style="display: none;">
@@ -40,26 +47,29 @@
 	</div>
 	<!-- End:: Section-1 -->
 
-	<!-- Start:: Section-2 -->
-	<section class="section section-bg " id="statistics">
-		<div class="container position-relative">
-			<div class="text-center">
-				<p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">SISTEM PAKAR</span></p>
-				<h3 class="fw-semibold mb-2">Kesimpulan</h3>
-				<div class="row justify-content-center">
-					<div class="col-xl-7">
-						<p class="text-muted fs-15 mb-5 fw-normal">Hasil analisa akan tampil disini.</p>
+	<?php if ($this->session->userdata('logged')) { ?>
+		<!-- Start:: Section-2 -->
+		<section class="section section-bg " id="statistics">
+			<div class="container position-relative">
+				<div class="text-center">
+					<p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">SISTEM PAKAR</span></p>
+					<h3 class="fw-semibold mb-2">Kesimpulan</h3>
+					<div class="row justify-content-center">
+						<div class="col-xl-7">
+							<p class="text-muted fs-15 mb-5 fw-normal">Hasil analisa akan tampil disini.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row g-2 justify-content-center">
+					<div class="col-xl-12">
+						<div id="showKesimpulan"></div>
 					</div>
 				</div>
 			</div>
-			<div class="row g-2 justify-content-center">
-				<div class="col-xl-12">
-					<div id="showKesimpulan"></div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End:: Section-2 -->
+		</section>
+		<!-- End:: Section-2 -->
+	<?php } ?>
+
 
 	<div class="text-center landing-main-footer py-3">
 		<span class="text-muted fs-15"> Copyright © <?= date('Y') ?>

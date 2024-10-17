@@ -41,12 +41,13 @@ class Checkup extends CI_Controller
 
 	public function get_next_gejala()
 	{
-		$id_penyakit 	  = $this->input->post('id_penyakit');
-		$id_gejala 		  = $this->input->post('id_gejala');
-		$jawaban 		  = $this->input->post('jawaban');
+		$id_penyakit 	  = $this->input->post('id_penyakit'); // current
+		$id_gejala 		  = $this->input->post('id_gejala'); // current
+		$jawaban 		  = $this->input->post('jawaban'); //ya atau tidak
 		$riwayat_gejala   = $this->input->post('riwayat_gejala');
 		$riwayat_penyakit = $this->input->post('riwayat_penyakit');
 		$gejala_yes       = $this->input->post('gejala_yes');
+		$riwayatResponse  = $this->input->post('riwayatResponse');
 
 		if (!$id_gejala) {
 			$result = $this->db->query("SELECT tr.id_rule, td.kode_disease, ts.kode_symptom, tr.id_symptom, ts.name_symptom, tr.id_disease
@@ -97,7 +98,7 @@ class Checkup extends CI_Controller
 					->order_by('persentase_terpenuhi', 'DESC')->get()->result();
 
 				if ($kesimpulan) {
-					$this->storeKesimpulan($kesimpulan, $gejala_yes);
+					$this->storeKesimpulan($kesimpulan, $riwayatResponse);
 				}
 
 				$return = [
@@ -138,7 +139,7 @@ class Checkup extends CI_Controller
 					->order_by('persentase_terpenuhi', 'DESC')->get()->result();
 
 				if ($kesimpulan) {
-					$this->storeKesimpulan($kesimpulan, $gejala_yes);
+					$this->storeKesimpulan($kesimpulan, $riwayatResponse);
 				}
 
 				$return = [
@@ -156,7 +157,7 @@ class Checkup extends CI_Controller
 	private function storeKesimpulan($kesimpulan, $response)
 	{
 		$checkup_number = 'C-' . time();
-		$id_user_detail = $this->session->userdata('id_user_detail') ?? 1;
+		$id_user_detail = $this->session->userdata('id_detail') ?? 1;
 		$created_by   	= $this->session->userdata('username') ?? 'system';
 		$created_at   	= date('Y-m-d H:i:s');
 
@@ -176,20 +177,20 @@ class Checkup extends CI_Controller
 		$this->db->insert_batch('tbl_checkup', $allK);
 		###############
 
-
 		### Simpan ke history response
 		$rowR = [];
 		$allR = [];
-		foreach ($response as $r) {
-			if ((int)$r !== 0) {
-				$rowR['checkup_number'] = $checkup_number;
-				$rowR['id_user_detail'] = $id_user_detail;
-				$rowR['id_symptom'] = $r;
-				$rowR['created_at'] = $created_at;
-				$rowR['created_by'] = $created_by;
+		foreach ($response as $k => $r) {
+			// if ((int)$r !== 0) {
+			$rowR['checkup_number'] = $checkup_number;
+			$rowR['id_user_detail'] = $id_user_detail;
+			$rowR['id_symptom'] = $k;
+			$rowR['jawaban'] = $r;
+			$rowR['created_at'] = $created_at;
+			$rowR['created_by'] = $created_by;
 
-				$allR[] = $rowR;
-			}
+			$allR[] = $rowR;
+			// }
 		}
 		$this->db->insert_batch('tbl_response', $allR);
 		###############################

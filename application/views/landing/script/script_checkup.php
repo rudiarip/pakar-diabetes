@@ -4,16 +4,21 @@
 	let currentDisease;
 	let riwayatPenyakit = ''; // Untuk melacak penyakit yang sudah ditampilkan
 	let gejalaYes = '';
+	var riwayatResponse = {};
 
 	$(document).ready(function() {
 
 		$('#ya').on('click', function() {
 			gejalaYes += currentGejalaId + ',';
+
+			riwayatResponse[currentGejalaId] = 'ya';
 			loadPertanyaan(currentGejalaId, 'ya', currentDisease);
 		});
 
 		$('#tidak').on('click', function() {
+			riwayatResponse[currentGejalaId] = 'tidak';
 			loadPertanyaan(currentGejalaId, 'tidak', currentDisease);
+			
 		});
 
 		$('#btnRepeat').on('click', function() {
@@ -42,7 +47,8 @@
 				riwayat_gejala: riwayatGejala,
 				id_penyakit: id_disease,
 				riwayat_penyakit: riwayatPenyakit,
-				gejala_yes: gejalaYes
+				gejala_yes: gejalaYes,
+				riwayatResponse: riwayatResponse
 			},
 			dataType: 'JSON',
 			beforeSend: function() {
@@ -66,7 +72,7 @@
 						riwayatGejala += currentGejalaId + ',';
 						riwayatPenyakit += currentDisease + ',';
 					} else if (response.message == 'stop') {
-						if (response.kesimpulan) {
+						if (response.kesimpulan.length > 0) {
 
 							let data = response.kesimpulan
 

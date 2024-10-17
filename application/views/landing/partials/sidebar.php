@@ -21,10 +21,23 @@
 				<ul class="main-menu">
 					<!-- Start::slide -->
 					<li class="slide">
-						<a class="side-menu__item" href="#home">
+						<a class="side-menu__item" href="<?= base_url() ?>">
 							<span class="side-menu__label">Home</span>
 						</a>
 					</li>
+					<?php if ($this->session->userdata('level') == 'pasien') { ?>
+						<li class="slide">
+							<a class="side-menu__item" href="<?= base_url('report') ?>">
+								<span class="side-menu__label">Laporan</span>
+							</a>
+						</li>
+					<?php } else if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'pakar') { ?>
+						<li class="slide">
+							<a class="side-menu__item" href="<?= base_url('dashboard') ?>">
+								<span class="side-menu__label">Dashboard Admin</span>
+							</a>
+						</li>
+					<?php } ?>
 					<!-- End::slide -->
 
 				</ul>
@@ -33,9 +46,19 @@
 					</svg></div>
 				<div class="d-lg-flex d-none">
 					<div class="btn-list d-lg-flex d-none mt-lg-2 mt-xl-0 mt-0">
-						<a href="sign-up-basic.html" class="btn btn-wave btn-primary">
-							Logout
-						</a>
+						<?php if ($this->session->userdata('logged')) { ?>
+							<a href="<?= base_url('login/logout') ?>" class="btn btn-wave btn-primary">
+								Keluar
+							</a>
+						<?php } else { ?>
+							<a href="<?= base_url('login') ?>" class="btn btn-wave btn-primary">
+								Masuk
+							</a>
+							<a href="<?= base_url('sign-up') ?>" class="btn btn-wave btn-primary">
+								Daftar
+							</a>
+						<?php } ?>
+
 					</div>
 				</div>
 			</nav>

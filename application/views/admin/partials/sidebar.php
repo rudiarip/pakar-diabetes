@@ -23,57 +23,80 @@
 				</svg>
 			</div>
 			<ul class="main-menu">
-				<!-- Start::slide__category -->
-				<li class="slide__category"><span class="category-name">Main</span></li>
-				<!-- End::slide__category -->
+				<?php if ($this->session->userdata('logged') && $this->session->userdata('level') !== 'pasien') { ?>
+					<!-- Start::slide__category -->
+					<li class="slide__category"><span class="category-name">Main</span></li>
+					<!-- End::slide__category -->
 
-				<!-- Start::slide -->
-				<li class="slide">
-					<a href="javascript:void(0);" class="side-menu__item">
-						<i class="bx bx-home side-menu__icon"></i>
-						<span class="side-menu__label">Dashboards</span>
-					</a>
-				</li>
-				<!-- End::slide -->
-
+					<!-- Start::slide -->
+					<li class="slide">
+						<a href="javascript:void(0);" class="side-menu__item">
+							<i class="bx bx-home side-menu__icon"></i>
+							<span class="side-menu__label">Dashboards</span>
+						</a>
+					</li>
+					<!-- End::slide -->
+				<?php } ?>
 				<!-- Start::slide__category -->
 				<li class="slide__category"><span class="category-name">Pages</span></li>
 				<!-- End::slide__category -->
 
-				<!-- Start::slide -->
-				<li class="slide has-sub <?= $this->uri->segment(1) == 'pasien' ||  $this->uri->segment(1) == 'pakar' ||  $this->uri->segment(1) == 'symptom' ||  $this->uri->segment(1) == 'disease' ? "active open" : "" ?>">
-					<a href="javascript:void(0);" class="side-menu__item <?= $this->uri->segment(1) == 'pasien' ||  $this->uri->segment(1) == 'pakar' ||  $this->uri->segment(1) == 'symptom' ||  $this->uri->segment(1) == 'disease' ? "active" : "" ?>">
-						<i class="bx bx-file-blank side-menu__icon"></i>
-						<span class="side-menu__label">Master Data</span>
-						<i class="fe fe-chevron-right side-menu__angle"></i>
-					</a>
-					<ul class="slide-menu child1">
-						<li class="slide side-menu__label1">
-							<a href="javascript:void(0)">Master Data</a>
-						</li>
-						<li class="slide">
-							<a href="<?= base_url('pasien') ?>" class="side-menu__item <?= $this->uri->segment(1) === 'pasien' ? "active" : "" ?>">Pasien</a>
-						</li>
+				<?php if ($this->session->userdata('logged') && $this->session->userdata('level') !== 'pasien') { ?>
+					<!-- Start::slide -->
+					<li class="slide has-sub <?= $this->uri->segment(1) == 'pasien' ||  $this->uri->segment(1) == 'pakar' ||  $this->uri->segment(1) == 'symptom' ||  $this->uri->segment(1) == 'disease' ? "active open" : "" ?>">
+						<a href="javascript:void(0);" class="side-menu__item <?= $this->uri->segment(1) == 'pasien' ||  $this->uri->segment(1) == 'pakar' ||  $this->uri->segment(1) == 'symptom' ||  $this->uri->segment(1) == 'disease' ? "active" : "" ?>">
+							<i class="bx bx-file-blank side-menu__icon"></i>
+							<span class="side-menu__label">Master Data</span>
+							<i class="fe fe-chevron-right side-menu__angle"></i>
+						</a>
+						<ul class="slide-menu child1">
+							<li class="slide side-menu__label1">
+								<a href="javascript:void(0)">Master Data</a>
+							</li>
+							<li class="slide">
+								<a href="<?= base_url('pasien') ?>" class="side-menu__item <?= $this->uri->segment(1) === 'pasien' ? "active" : "" ?>">Pasien</a>
+							</li>
 
-						<li class="slide">
-							<a href="<?= base_url('pakar') ?>" class="side-menu__item <?= $this->uri->segment(1) === 'pakar' ? "active" : "" ?>">Pakar</a>
-						</li>
+							<li class="slide">
+								<a href="<?= base_url('pakar') ?>" class="side-menu__item <?= $this->uri->segment(1) === 'pakar' ? "active" : "" ?>">Pakar</a>
+							</li>
 
-						<li class="slide">
-							<a href="<?= base_url('symptom') ?>" class="side-menu__item <?= $this->uri->segment(1) === 'symptom' ? "active" : "" ?>">Gejala</a>
-						</li>
+							<li class="slide">
+								<a href="<?= base_url('symptom') ?>" class="side-menu__item <?= $this->uri->segment(1) === 'symptom' ? "active" : "" ?>">Gejala</a>
+							</li>
 
-						<li class="slide">
-							<a href="<?= base_url('disease') ?>" class="side-menu__item <?= $this->uri->segment(1) === 'disease' ? "active" : "" ?>">Penyakit</a>
-						</li>
-					</ul>
-				</li>
+							<li class="slide">
+								<a href="<?= base_url('disease') ?>" class="side-menu__item <?= $this->uri->segment(1) === 'disease' ? "active" : "" ?>">Penyakit</a>
+							</li>
+						</ul>
+					</li>
 
 
+					<li class="slide">
+						<a href="<?= base_url('rules') ?>" class="side-menu__item <?= $this->uri->segment(1) == 'rules' ? "active" : "" ?>">
+							<i class="bx bx-cog side-menu__icon"></i>
+							<span class="side-menu__label">Master Rules</span>
+						</a>
+					</li>
+				<?php } ?>
 				<li class="slide">
-					<a href="<?= base_url('rules') ?>" class="side-menu__item <?= $this->uri->segment(1) == 'rules' ? "active" : "" ?>">
-						<i class="bx bx-cog side-menu__icon"></i>
-						<span class="side-menu__label">Master Rules</span>
+					<a href="<?= base_url('report') ?>" class="side-menu__item <?= $this->uri->segment(1) == 'report' ? "active" : "" ?>">
+						<i class="bx bx-bar-chart-square side-menu__icon"></i>
+						<span class="side-menu__label">Laporan</span>
+					</a>
+				</li>
+				<?php if ($this->session->userdata('level') == 'admin') { ?>
+					<li class="slide">
+						<a class="side-menu__item <?= $this->uri->segment(1) === 'usermanagement' ? "active" : "" ?>" href="<?= base_url('usermanagement') ?>">
+							<i class="bx bx-user side-menu__icon"></i>
+							<span class="side-menu__label">User Manajemen</span>
+						</a>
+					</li>
+				<?php } ?>
+				<li class="slide">
+					<a href="<?= base_url('login/logout') ?>" class="side-menu__item">
+						<i class="bx bx-log-out side-menu__icon"></i>
+						<span class="side-menu__label">Keluar</span>
 					</a>
 				</li>
 				<!-- End::slide -->
