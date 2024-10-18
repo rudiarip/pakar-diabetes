@@ -3,7 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Report extends CI_Controller
 {
-
 	function __construct()
 	{
 		parent::__construct();
@@ -13,18 +12,9 @@ class Report extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->library('session');
 
-		// if (!$this->session->userdata('logged')) {
-		// 	$this->session->set_flashdata('failed', 'Login Terlebih Dahulu');
-		// 	redirect(base_url('login'));
-		// }
-
-		// if ($this->session->userdata('level') == 'pasien') {
-		// 	redirect(base_url('dashboard_pasien'));
-		// }
-
-		// if ($this->session->userdata('level') == 'dokter') {
-		// 	redirect(base_url('pemeriksaan'));
-		// }
+		if (!$this->session->userdata('logged')) {
+			redirect(base_url('login'));
+		}
 	}
 
 	public function index()
@@ -56,7 +46,7 @@ class Report extends CI_Controller
 			$this->db->or_like('tud.nama_lengkap', $search);
 		}
 
-		if($this->session->userdata('logged') && $this->session->userdata('level') == 'pasien'){
+		if ($this->session->userdata('logged') && $this->session->userdata('level') == 'pasien') {
 			$this->db->where('tc.id_user_detail', $this->session->userdata('id_detail'));
 		}
 
@@ -102,11 +92,11 @@ class Report extends CI_Controller
 		$checkup_number = $this->input->post('checkup_number');
 
 		$result = $this->db->select('td.kode_disease, td.name_disease, tc.percentage')
-		->from('tbl_checkup tc')
-		->join('tbl_diseases td', 'tc.id_disease=td.id_disease')
-		->where('tc.checkup_number', $checkup_number)
-		->get()->result();
-		
+			->from('tbl_checkup tc')
+			->join('tbl_diseases td', 'tc.id_disease=td.id_disease')
+			->where('tc.checkup_number', $checkup_number)
+			->get()->result();
+
 		echo json_encode($result);
 		return;
 	}
@@ -116,11 +106,11 @@ class Report extends CI_Controller
 		$checkup_number = $this->input->post('checkup_number');
 
 		$result = $this->db->select('ts.kode_symptom, ts.name_symptom, UPPER(tr.jawaban) AS jawaban')
-		->from('tbl_response tr')
-		->join('tbl_symptoms ts', 'tr.id_symptom=ts.id_symptom')
-		->where('tr.checkup_number', $checkup_number)->order_by('tr.id_response')
-		->get()->result();
-		
+			->from('tbl_response tr')
+			->join('tbl_symptoms ts', 'tr.id_symptom=ts.id_symptom')
+			->where('tr.checkup_number', $checkup_number)->order_by('tr.id_response')
+			->get()->result();
+
 		echo json_encode($result);
 		return;
 	}

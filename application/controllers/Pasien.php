@@ -13,18 +13,13 @@ class Pasien extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->library('session');
 
-		// if (!$this->session->userdata('logged')) {
-		// 	$this->session->set_flashdata('failed', 'Login Terlebih Dahulu');
-		// 	redirect(base_url('login'));
-		// }
+		if (!$this->session->userdata('logged')) {
+			redirect(base_url('login'));
+		}
 
-		// if ($this->session->userdata('level') == 'pasien') {
-		// 	redirect(base_url('dashboard_pasien'));
-		// }
-
-		// if ($this->session->userdata('level') == 'dokter') {
-		// 	redirect(base_url('pemeriksaan'));
-		// }
+		if ($this->session->userdata('level') == 'pasien') {
+			redirect(base_url());
+		}
 	}
 
 	public function index()
