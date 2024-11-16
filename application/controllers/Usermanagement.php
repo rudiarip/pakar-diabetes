@@ -17,8 +17,8 @@ class Usermanagement extends CI_Controller
 			redirect(base_url('login'));
 		}
 
-		if ($this->session->userdata('level') == 'pasien') {
-			redirect(base_url());
+		if ($this->session->userdata('level') !== 'admin') {
+			redirect(base_url('dashboard'));
 		}
 	}
 

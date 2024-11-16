@@ -8,23 +8,6 @@ class Checkup extends CI_Controller
 	{
 		parent::__construct();
 
-		// $this->load->helper(array('form', 'url'));
-		// $this->load->helper('cookie');
-		// $this->load->library('form_validation');
-		// $this->load->library('session');
-
-		// if (!$this->session->userdata('logged')) {
-		// 	$this->session->set_flashdata('failed', 'Login Terlebih Dahulu');
-		// 	redirect(base_url('login'));
-		// }
-
-		// if ($this->session->userdata('level') == 'pasien') {
-		// 	redirect(base_url('dashboard_pasien'));
-		// }
-
-		// if ($this->session->userdata('level') == 'dokter') {
-		// 	redirect(base_url('pemeriksaan'));
-		// }
 	}
 
 	public function index()

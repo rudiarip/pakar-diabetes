@@ -10,19 +10,11 @@ class Setting extends CI_Controller
         $this->load->helper('date');
         $this->logo = FCPATH . "assets/images/brand-logos/";
 
-        if (!$this->session->userdata('logged')) {
-            $this->session->set_flashdata('failed', 'Login Terlebih Dahulu');
-            redirect(base_url('login'));
-        }
-
-        if ($this->session->userdata('level') == 'pasien') {
-            redirect(base_url('dashboard_pasien'));
-        }
-
-        if ($this->session->userdata('level') == 'dokter') {
-            redirect(base_url('pemeriksaan'));
-        }
+        if ($this->session->userdata('level') !== 'admin') {
+			redirect(base_url('dashboard'));
+		}
     }
+
     public function index()
     {
         $data = [
@@ -67,7 +59,6 @@ class Setting extends CI_Controller
         $this->load->library('image_lib', $config);
         $this->image_lib->resize();
     }
-
 
     function simpan()
     {
