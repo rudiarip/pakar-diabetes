@@ -25,6 +25,7 @@
 <script src="<?= base_url('') ?>assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
 <script src="<?= base_url('') ?>assets/libs/datatables.net-bs5/js/dataTables.responsive.min.js"></script>
 <script src="<?= base_url() ?>assets/libs/sweetalert2/sweetalert2.min.js"></script>
+<script src="<?= base_url() ?>assets/js/jquery.validate.js"></script>
 
 <?php
 if (isset($script)) {

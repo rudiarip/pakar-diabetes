@@ -97,6 +97,13 @@
 							</li>
 						</ul>
 					</li>
+
+					<li class="slide">
+						<a href="<?= base_url('setting') ?>" class="side-menu__item <?= $this->uri->segment(1) == 'setting' ? "active" : "" ?>">
+							<i class="bx bx-cog side-menu__icon"></i>
+							<span class="side-menu__label">Setting</span>
+						</a>
+					</li>
 				<?php } ?>
 				<li class="slide">
 					<a href="<?= base_url('login/logout') ?>" class="side-menu__item">

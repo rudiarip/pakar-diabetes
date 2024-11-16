@@ -47,12 +47,12 @@
 							<form id="inputform">
 								<div class="col-xl-12 mb-2">
 									<label for="username" class="form-label text-default">Username</label>
-									<input type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Username">
+									<input type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Username" required>
 								</div>
 								<div class="col-xl-12 mb-2">
 									<label for="password" class="form-label text-default d-block">Password</label>
 									<div class="input-group">
-										<input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="password">
+										<input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="password" required>
 										<button class="btn btn-light" type="button" onclick="createpassword('password',this)" id="button-addon2"><i class="ri-eye-off-line align-middle"></i></button>
 									</div>
 								</div>
@@ -60,9 +60,6 @@
 									<button type="submit" id="btn-simpan" class="btn btn-lg btn-primary">Masuk</button>
 								</div>
 							</form>
-						</div>
-						<div class="text-center">
-							<p class="fs-12 text-muted mt-3">Tidak memiliki akun? <a href="<?= base_url() ?>" class="text-primary">Daftar</a></p>
 						</div>
 					</div>
 				</div>
