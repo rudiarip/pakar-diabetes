@@ -118,6 +118,7 @@ class Setting extends MY_Controller
         $simpan = $this->db->update('tbl_setting', $data);
 
         if ($simpan) {
+			$this->generate_setting();
             echo 'success';
         } else {
             echo 'error';
