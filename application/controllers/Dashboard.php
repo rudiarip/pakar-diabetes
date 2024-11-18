@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 
-class Dashboard extends CI_Controller
+class Dashboard extends MY_Controller
 {
 
 	public function __construct()
@@ -10,6 +10,10 @@ class Dashboard extends CI_Controller
 		parent::__construct();
 		if (!$this->session->userdata('logged')) {
 			redirect(base_url('login'));
+		}
+
+		if (!$this->session->userdata('app_name')) {
+			$this->generate_setting();
 		}
 	}
 

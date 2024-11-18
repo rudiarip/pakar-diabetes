@@ -10,8 +10,7 @@
 				<div class="landing-logo-container">
 					<div class="horizontal-logo">
 						<a href="index.html" class="header-logo">
-							<img src="../assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
-							<img src="../assets/images/brand-logos/desktop-white.png" alt="logo" class="desktop-white">
+							<img src="<?= base_url() ?>upload/img/<?= $this->session->userdata('logo')?>" alt="logo" class="desktop-white">
 						</a>
 					</div>
 				</div>
@@ -53,9 +52,6 @@
 						<?php } else { ?>
 							<a href="<?= base_url('login') ?>" class="btn btn-wave btn-primary">
 								Masuk
-							</a>
-							<a href="<?= base_url('sign-up') ?>" class="btn btn-wave btn-primary">
-								Daftar
 							</a>
 						<?php } ?>
 

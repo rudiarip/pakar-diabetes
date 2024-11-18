@@ -1,12 +1,15 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Login extends CI_Controller
+class Login extends MY_Controller
 {
 
 	public function __construct()
 	{
 		parent::__construct();
+		if (!$this->session->userdata('app_name')) {
+			$this->generate_setting();
+		}
 		$this->load->library('form_validation');
 	}
 

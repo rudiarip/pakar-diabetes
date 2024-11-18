@@ -1,13 +1,15 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Checkup extends CI_Controller
+class Checkup extends MY_Controller
 {
 
 	function __construct()
 	{
 		parent::__construct();
-
+		if (!$this->session->userdata('app_name')) {
+			$this->generate_setting();
+		}
 	}
 
 	public function index()

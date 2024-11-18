@@ -48,9 +48,6 @@
 						<a href="<?= base_url('login') ?>" class="btn btn-primary-light">
 							Masuk
 						</a>
-						<a href="<?= base_url('sign-up') ?>" class="btn btn-primary-light">
-							Daftar
-						</a>
 					<?php } ?>
 				</div>
 				<!-- End::header-link|switcher-icon -->

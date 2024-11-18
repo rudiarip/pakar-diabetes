@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Disease extends CI_Controller
+class Disease extends MY_Controller
 {
 
 	function __construct()
@@ -21,9 +21,9 @@ class Disease extends CI_Controller
 			redirect(base_url());
 		}
 
-		// if ($this->session->userdata('level') == 'dokter') {
-		// 	redirect(base_url('pemeriksaan'));
-		// }
+		if (!$this->session->userdata('app_name')) {
+			$this->generate_setting();
+		}
 	}
 
 	public function index()

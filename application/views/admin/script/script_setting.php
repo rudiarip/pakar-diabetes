@@ -14,7 +14,7 @@
 				success: function(response) {
 					var data = response.data;
 
-					$('[id="imglogo"]').attr("src", "<?= base_url() ?>assets/images/brand-logos/" + data.logo);
+					$('[id="imglogo"]').attr("src", "<?= base_url() ?>upload/img/" + data.logo);
 					$('[id="imglogo"]').attr("style",
 						"border: 1px solid #4B49AC ; border-radius: 12px;");
 					$('[name="kodedit"]').val(data.id);

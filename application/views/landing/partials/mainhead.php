@@ -7,12 +7,12 @@
 	<meta charset="UTF-8">
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title> Sistem Pakar <?= $judul ? '| ' . $judul : '' ?> </title>
+	<title> <?= $this->session->userdata('app_name') ?> <?= $judul ? '| ' . $judul : '' ?> </title>
 	<meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
 	<meta name="Author" content="Spruko Technologies Private Limited">
 
 	<!-- Favicon -->
-	<link rel="icon" href="<?= base_url() ?>assets/images/brand-logos/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?= base_url() ?>upload/img/<?= $this->session->userdata('logo')?>" type="image/x-icon">
 
 	<!-- Bootstrap Css -->
 	<link id="style" href="<?= base_url() ?>assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">

@@ -7,10 +7,10 @@
 	<meta charset="UTF-8">
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title> Sistem Pakar <?= $judul ? '| ' . $judul : '' ?> </title>
-	<meta name="Description" content="Sistem Pakar">
+	<title> <?= $this->session->userdata('app_name') ?> <?= $judul ? '| ' . $judul : '' ?> </title>
+	<meta name="Description" content="<?= $this->session->userdata('app_name') ?>">
 	<!-- Favicon -->
-	<link rel="icon" href="<?= base_url() ?>assets/images/brand-logos/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?= base_url() ?>upload/img/<?= $this->session->userdata('logo')?>" type="image/x-icon">
 
 	<!-- Main Theme Js -->
 	<script src="<?= base_url() ?>assets/js/authentication-main.js"></script>
@@ -35,8 +35,7 @@
 			<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
 				<div class="my-5 d-flex justify-content-center">
 					<a href="index.html">
-						<img src="<?= base_url() ?>assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
-						<img src="<?= base_url() ?>assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
+						<img src="<?= base_url() ?>upload/img/<?= $this->session->userdata('logo')?>" alt="logo" width="100">
 					</a>
 				</div>
 				<div class="card custom-card">

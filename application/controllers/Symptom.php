@@ -1,15 +1,17 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Symptom extends CI_Controller
+class Symptom extends MY_Controller
 {
 
 	function __construct()
 	{
 		parent::__construct();
 
-		// $this->load->helper(array('form', 'url'));
-		// $this->load->helper('cookie');
+		if (!$this->session->userdata('app_name')) {
+			$this->generate_setting();
+		}
+		
 		$this->load->library('form_validation');
 		$this->load->library('session');
 

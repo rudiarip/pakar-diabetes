@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class Setting extends CI_Controller
+class Setting extends MY_Controller
 {
     public function __construct()
     {
@@ -8,10 +8,14 @@ class Setting extends CI_Controller
         $this->load->helper('cookie');
         $this->load->library('form_validation');
         $this->load->helper('date');
-        $this->logo = FCPATH . "assets/images/brand-logos/";
+        $this->logo = FCPATH . "upload/img/";
 
         if ($this->session->userdata('level') !== 'admin') {
 			redirect(base_url('dashboard'));
+		}
+
+		if (!$this->session->userdata('app_name')) {
+			$this->generate_setting();
 		}
     }
 
